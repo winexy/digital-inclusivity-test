@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>American Space</title>
+	<style>
+      :root {
+          font-family: sans-serif;
+          font-size: 16px;
+
+          --color-blue-400: #60a5fa;
+          --color-blue-500: #3b82f6;
+          --color-blue-600: #2563eb;
+
+          --color-red-400: #f87171;
+          --color-red-500: #ef4444;
+          --color-red-600: #dc2626;
+
+          --color-slate-200: #e2e8f0;
+      }
+
+      body {
+          background: var(--color-slate-200);
+      }
+
+      ::backdrop {
+          background: black;
+          opacity: 0.30;
+      }
+
+      #dialog {
+          border-radius: 12px;
+          border: none;
+          padding: 16px 24px;
+      }
+
+      button {
+          border-radius: 8px;
+          border: none;
+          padding: 8px 16px;
+          color: #fff;
+          background: var(--color-blue-500);
+          font-weight: 600;
+          transition: ease-in 75ms;
+          cursor: pointer;
+      }
+
+      button:hover {
+          background: var(--color-blue-400);
+      }
+
+      button:active {
+          background: var(--color-blue-600);
+      }
+
+      button:focus {
+          box-shadow: 0 0 0 2px var(--color-blue-400);
+          outline: none;
+      }
+
+      #cancel {
+          background: #f87171;
+          background: var(--color-red-500);
+      }
+
+      #cancel:hover {
+          background: var(--color-red-400);
+      }
+
+      #cancel:active {
+          background: var(--color-red-600);
+      }
+
+      #cancel:focus {
+          box-shadow: 0 0 0 2px var(--color-red-400);
+          outline: none;
+      }
+
+      input {
+          display: block;
+          margin-top: 8px;
+          border: 2px solid #94a3b8;
+          padding: 8px;
+          border-radius: 8px;
+      }
+
+      input:focus {
+          border-color: var(--color-blue-500);
+          outline: none;
+      }
+
+      .btn-group {
+          margin-top: 16px;
+      }
+	</style>
+</head>
+<body>
+<button onclick="show()">Открыть модальное окно</button>
+
+<dialog id="dialog">
+	<label>
+		<strong>Введите текст</strong>
+		<input type="text" id="input">
+	</label>
+	<div class="btn-group">
+		<button id="ok" onclick="submit()">ОК</button>
+		<button id="cancel" onclick="hide()">ОТМЕНА</button>
+	</div>
+</dialog>
+
+<script>
+	const {dialog, input} = window;
+
+	const show = () => dialog.showModal()
+	const hide = () => dialog.close()
+
+	function submit() {
+		if (input.value === '') {
+			return;
+		}
+
+		alert(`Вы ввели ${input.value}`)
+		input.value = '';
+
+		dialog.close()
+	}
+</script>
+</body>
+</html>
